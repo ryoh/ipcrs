@@ -1,5 +1,5 @@
 use anyhow::Result;
-use std::net::IpAddr;
+use ipaddress::IPAddress;
 use structopt::StructOpt;
 
 #[derive(Debug, StructOpt)]
@@ -10,7 +10,7 @@ struct Opt {
 fn main() -> Result<()> {
     let opt = Opt::from_args();
 
-    let ipaddr: IpAddr = opt.ipaddr.parse()?;
+    let ipaddr = IPAddress::parse(opt.ipaddr).unwrap();
 
     println!("{:?}", ipaddr);
 
